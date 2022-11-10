@@ -1,4 +1,4 @@
-import testData from "../fixtures/test-data";
+import testData from "../fixtures/test-data.js";
 
 describe('SignUp-Login Suite', function () {
 
