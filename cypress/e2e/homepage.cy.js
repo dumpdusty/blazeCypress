@@ -55,12 +55,14 @@ describe('HomePage Suite', function () {
         cy.get(`.card`).should(`have.length`, 9)
     })
 
-    it(`should have a list of products with a name and short description`, function () {
+    it.only(`should have a list of products with a name and short description`, function () {
         cy.visit(`/`)
           cy.get(`.card`).each(($el, index, $list) => {
             cy.wrap($el).find(`.card-title`).should('be.visible')
             cy.wrap($el).find(`.card-text`).should('be.visible')
+            cy.wrap($el).find(`h5`).invoke(`text`).should(`match`, /^\$\d*/)
               //is there a way to check that each item has a price?
+              //done using regex
           })
         })
 
