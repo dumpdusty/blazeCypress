@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chance": "^1.1.9",
     "cypress": "^11.0.0"
   }
 }
