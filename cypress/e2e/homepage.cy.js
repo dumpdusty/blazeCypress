@@ -57,17 +57,19 @@ describe('HomePage Suite', function () {
 
     it(`should have a list of products with a name and short description`, function () {
         cy.visit(`/`)
-          cy.get(`.card`).each(($el, index, $list) => {
+        cy.get(`.card`).each(($el) => {
             cy.wrap($el).find(`.card-title`).should('be.visible')
             cy.wrap($el).find(`.card-text`).should('be.visible')
-              //is there a way to check that each item has a price?
-          })
+            cy.wrap($el).find(`h5`).invoke(`text`).should(`match`, /^\$\d*/)
+            //is there a way to check that each item has a price?
+            //done using regex
         })
+    })
 
     it(`each name is a hypertext`, function () {
-        //does it test all 9 items?
+        //does it test all 9 items?  - YEP, it will check each element in yielded array
         cy.visit(`/`)
-        cy.get(`a[href="prod.html?idp_=1"]`).each(($el, index, $list) => {
+        cy.get(`a[href="prod.html?idp_=1"]`).each(($el) => {
             cy.wrap($el).should('have.attr', 'href')
         })
     })
@@ -84,9 +86,9 @@ describe('HomePage Suite', function () {
             .and('contain', 'Monitors')
     })
 
-   // it('clicking on Phones should display phones', function () {
-   // onclick="byCat('phone')"
-   // })
+    // it('clicking on Phones should display phones', function () {
+    // onclick="byCat('phone')"
+    // })
 
     it('navbar is visible and has 6 items', function () {
         cy.visit(`/`)
@@ -102,5 +104,25 @@ describe('HomePage Suite', function () {
         cy.visit(`/`)
         cy.get(`ul.pagination`).should('contain', 'Previous')
             .and('contain', 'Next')
+    })
+
+    it('check pagination button working', () => {
+        cy.visit(`/`).wait(500)
+        cy.get(`#tbodyid`).find(`img[class="card-img-top img-fluid"]`).eq(0)
+            .invoke(`attr`, `src`).as(`pic1`)
+
+        cy.contains(`[class="pagination"]`, `Next`).click().wait(500)
+
+        cy.get(`#tbodyid`)
+            .find(`[class="card-img-top img-fluid"]`).eq(0)
+            .invoke(`attr`, `src`).as(`pic2`)
+
+        cy.get(`#prev2`).click().wait(500)
+
+        cy.get(`#tbodyid`).find(`[class="card-img-top img-fluid"]`).eq(0)
+            .invoke(`attr`, `src`).as(`pic3`)
+
+        expect(`@pic1`).to.not.eq(`@pic2`)
+        expect(`@pic2`).to.not.eq(`@pic3`)
     })
 })
