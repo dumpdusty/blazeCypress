@@ -9,13 +9,13 @@ describe('about us', () => {
     it('video playing', () => {
         cy.get(`video`).should(`have.prop`, `paused`, true)
             .and(`have.prop`, `ended`, false)
-            .then(($video)=>{
-                $video[0].play()
+            .then(video => {
+                video[0].play()
         })
-        cy.wait(10000)
+        cy.wait(2000)
         cy.get(`video`).should(`have.prop`, `paused`, false)
-            .then(($video)=>{
-            $video[0].pause()
+            .then(video => {
+            video[0].pause()
         })
         cy.get(`video`).should(`have.prop`, `paused`, true)
     });
