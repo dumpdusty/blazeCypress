@@ -55,7 +55,7 @@ describe('HomePage Suite', function () {
         cy.get(`.card`).should(`have.length`, 9)
     })
 
-    it(`should have a list of products with a name and short description`, function () {
+    it(`should have a list of products with a name, price and short description`, function () {
         cy.visit(`/`)
         cy.get(`.card`).each(($el) => {
             cy.wrap($el).find(`.card-title`).should('be.visible')
