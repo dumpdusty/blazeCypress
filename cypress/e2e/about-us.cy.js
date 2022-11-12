@@ -1,4 +1,4 @@
-describe('about us', () => {
+describe('About us Suite', () => {
 
     it('modal window opening', () => {
         cy.visit(`/`)

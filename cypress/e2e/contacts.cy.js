@@ -1,7 +1,7 @@
 const chance = require(`chance`).Chance()
 
 
-describe('contacts', () => {
+describe('Contacts Suite', () => {
     it('', () => {
         cy.visit(`/`)
         cy.contains(`[data-toggle="modal"]`, 'Contact').click()
