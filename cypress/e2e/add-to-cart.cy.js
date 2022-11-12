@@ -1,4 +1,4 @@
-describe('Shopping Cart', () => {
+describe('Shopping Cart Suite', () => {
     it('should add product to cart', () => {
         cy.visit(`/`)
         cy.get(`.hrefch`).first().click()

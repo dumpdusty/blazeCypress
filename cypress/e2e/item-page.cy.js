@@ -1,4 +1,4 @@
-describe('inspect item page', () => {
+describe('Item page Suite', () => {
     it('check item page', () => {
         cy.visit(`/`)
         cy.get(`.hrefch`).first().click()
