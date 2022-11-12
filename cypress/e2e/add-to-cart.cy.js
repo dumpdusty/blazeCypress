@@ -71,7 +71,7 @@ describe('Shopping Cart', () => {
             .and('not.contain', 'Nokia lumia 1520')
     })
 
-    it('should place an order', () => {
+    it.only('should place an order', () => {
         cy.visit(`/`)
         cy.get(`.hrefch`).first().click()
         cy.contains('Add to cart').click()
