@@ -2,7 +2,7 @@ import testData from "../fixtures/test-data.js";
 
 describe('SignUp-Login Suite', function () {
 
-    it.only(`sign up with valid credentials`, function () {
+    it(`sign up with valid credentials`, function () {
         cy.visit(`/`)
         cy.get(`#signin2`).click()
         cy.get(`[onclick="register()"]`).should(`be.visible`)
